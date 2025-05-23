@@ -1,0 +1,51 @@
+<form>
+    <fieldset [formGroup]="form">
+        <label>
+            <span>First name:</span>
+            <input type="text" id="firstName" class="form-control"
+                formControlName="firstName" required
+            >
+            @if (firstName && firstName.invalid && firstName.touched) {
+                <div class="alert alert-danger">
+                @if (firstName.hasError('required')) {
+                    <div>
+                    First name is required.
+                    </div>
+                }
+                @if (firstName.hasError('minlength')) {
+                    <div>
+                    First name must be at least 2 characters long.
+                    </div>
+                }
+                </div>
+            }
+        </label>
+        <label>
+            <span>Phone number:</span>
+            <input type="text" id="phoneNumber" class="form-control"
+                formControlName="phoneNumber" required
+            >
+            @if (phoneNumber && phoneNumber.invalid && phoneNumber.touched) {
+                <div class="alert alert-danger">
+                @if (phoneNumber.hasError('required')) {
+                    <div>
+                    Phone number is required.
+                    </div>
+                }
+                @if (phoneNumber.hasError('pattern')) {
+                    <div>
+                    Phone number must be 10 digits
+                    </div>
+                }
+                </div>
+            }
+        </label>
+        <button
+            type="button"
+            (click)="save()"
+            [disabled]="form.invalid"
+        >
+            Save
+        </button>
+    </fieldset>
+</form>
