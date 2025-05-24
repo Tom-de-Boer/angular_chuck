@@ -1,0 +1,14 @@
+<ul>
+    @for (item of contacts(); track $index) {
+        <li>
+            <div>{{ item.name }}</div>
+            <div>{{ item.phone }}</div>
+            <div>{{ item.joke }}</div>
+            <button 
+            type="button"
+            (click)="remove($index)">x</button>
+        </li>
+    } @empty {
+    <li>There are no items.</li>
+    }
+</ul>

@@ -1,6 +1,7 @@
 import { Component, signal, inject } from '@angular/core';
 import {FormControl, ReactiveFormsModule, Validators, FormGroup} from '@angular/forms';
 import { ChuckapiService } from '../../service/chuckapi.service';
+import { ContactService } from '../../service/contact.service';
 import { catchError } from 'rxjs';
 import { NgIf } from '@angular/common';
 
@@ -13,6 +14,7 @@ import { NgIf } from '@angular/common';
 })
 export class FormComponent {
   chuckapiService = inject(ChuckapiService);
+  contactService = inject(ContactService);
   form: FormGroup = new FormGroup({
     firstName: new FormControl("", [
       Validators.required,
@@ -43,8 +45,10 @@ export class FormComponent {
       }))
       .subscribe((joke)=>{
         this.busyApi.set(false);
+        this.errorApi.set("");
         const jokeStr = joke.value;
-        console.log("save jokeStr", jokeStr);
+        this.contactService.addContact({joke:jokeStr, phone: this.phoneNumber?.value, name: this.firstName?.value});
+        this.form.reset();
       });
   }
 }
