@@ -47,5 +47,7 @@
         >
             Save
         </button>
+        <div>{{busyApi()}}</div>
+        <div *ngIf="errorApi() != ''">{{errorApi()}}</div>
     </fieldset>
 </form>
