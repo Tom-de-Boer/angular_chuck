@@ -1,14 +1,18 @@
 <ul>
     @for (item of contacts(); track $index) {
         <li [class]="{'green_item':fibonacciService.isFibonacci($index),}">
-            <div>{{ item.name }}</div>
-            <div>{{ item.phone }}</div>
-            <div>{{ item.joke }}</div>
+            
+            <div class="name">👤{{ item.name }}</div>
+            <div class="phone">☎ {{ item.phone }}</div>
+            <div class="joke">Joke: "{{ item.joke }}"</div>
             <button 
-            type="button"
-            (click)="remove($index)">x</button>
+                type="button"
+                (click)="remove($index)">
+                REMOVE CONTACT
+            </button>
+            
         </li>
     } @empty {
-    <li>There are no items.</li>
+    <li>No contacts to display. Create a new contact on the left!</li>
     }
 </ul>

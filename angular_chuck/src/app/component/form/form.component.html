@@ -45,9 +45,9 @@
             (click)="save()"
             [disabled]="form.invalid"
         >
-            Save
+            SAVE
         </button>
         <!-- <div>{{busyApi()}}</div> -->
-        <div *ngIf="errorApi() != ''">{{errorApi()}}</div>
+        <div *ngIf="errorApi() != ''" class="alert alert-danger">{{errorApi()}}</div>
     </fieldset>
 </form>
